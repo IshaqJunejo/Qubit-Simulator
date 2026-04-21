@@ -16,6 +16,8 @@ class QubitRegister {
     QubitRegister();
     QubitRegister(int size);
     void randomize();
+    double probabilityOf(int n, bool target);
+    void measure(int n);
     friend std::ostream & operator<<(std::ostream & out, const QubitRegister & other);
 };
 

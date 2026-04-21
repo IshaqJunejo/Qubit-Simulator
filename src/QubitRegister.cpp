@@ -1,9 +1,10 @@
 // #include <vector>
 #include <cmath>
 #include <Eigen/Dense>
-#include "QubitRegister.h"
 #include <cstdlib>
 #include <ctime>
+#include <stdexcept>
+#include "QubitRegister.h"
 
 typedef std::complex<double> Complex;
 typedef Eigen::VectorXcd StateVector;
@@ -34,22 +35,56 @@ void QubitRegister::randomize(){
 // Implementing the normalize function
 void QubitRegister::normalize(){
     double sum = 0;
+
     for (int i = 0; i < (1 << numOfQubits); i++){
-        // sum += state(i).abs();
-        sum += std::abs(state(i));
+        sum += std::norm(state(i));
     }
+    sum = std::sqrt(sum);
     for (int i = 0; i < (1 << numOfQubits); i++){
-        state(i) = state(i)/sum;
+        state(i) = state(i) / sum;
     }
 }
 
-//operator overloading
+
+double QubitRegister::probabilityOf(int n, bool target) {
+    if (n < 0 || n >= numOfQubits)
+        throw std::invalid_argument("Invalid qubit index");
+
+    double prob = 0.0;
+    int indent = (target)? 0 : (1 << n);
+
+    for (int i = 0; i < (1 << numOfQubits); i++) {
+        if (((i - indent) >> n) & 1) {
+            prob += std::norm(state(i));
+        }
+    }
+
+    return prob;
+}
+
+void QubitRegister::measure(int n) {
+    if (n < 0 || n >= numOfQubits) 
+        throw std::invalid_argument("Invalid qubit index");
+
+    double prob = probabilityOf(n, true);
+
+    double random = (rand() % 100) / 99.0;
+    int indent = (random >= prob)? (1 << n) : 0;
+
+    for (int i = 0; i < (1 << numOfQubits); i++) {
+        if (((i - indent) >> n) & 1) {
+            state(i) = 0.0;
+        }
+    }
+
+    normalize();
+}
+
+// operator overloading
 std::ostream& operator<<(std::ostream& out, const QubitRegister& other) {
     for (int i = 0; i < (1 << other.numOfQubits); i++){
-        // out << other.state(i).abs() << std::endl;
-        out << std::abs(other.state(i)) << std::endl;
+        out << std::norm(other.state(i)) << std::endl;
     }
 
     return out;
 }
-
