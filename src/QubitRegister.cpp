@@ -69,7 +69,7 @@ void QubitRegister::measure(int n) {
     double prob = probabilityOf(n, true);
 
     double random = (rand() % 100) / 99.0;
-    int indent = (random >= prob)? (1 << n) : 0;
+    int indent = (random > prob)? (1 << n) : 0;
 
     for (int i = 0; i < (1 << numOfQubits); i++) {
         if (((i - indent) >> n) & 1) {
@@ -78,6 +78,11 @@ void QubitRegister::measure(int n) {
     }
 
     normalize();
+}
+
+// Get a reference to the State Vector
+StateVector& QubitRegister::getState() {
+    return this->state;
 }
 
 // operator overloading
