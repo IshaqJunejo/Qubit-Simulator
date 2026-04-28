@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(Qubit_Simulator
     src/Circuit.cpp
     src/Gate.cpp
-    src/PauliX.cpp
+    src/PauliXGate.cpp
     src/GateFactory.cpp
     src/QubitRegister.cpp
     src/main.cpp

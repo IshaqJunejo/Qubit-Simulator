@@ -1,13 +1,13 @@
 #include "QubitRegister.h"
 #include "Gate.h"
-#include "PauliX.h"
+#include "PauliXGate.h"
 
-PauliX::PauliX (int index) {
+PauliXGate::PauliXGate (int index) {
     this->targets.push_back(index);
 }
 
-void PauliX::apply (StateVector& state) {
-    // PauliX gate implementation logic
+void PauliXGate::apply (StateVector& state) {
+    // PauliXGate gate implementation logic
     for (int i = 0; i < state.size(); i++) {
         if (!(i & (1 << this->targets[0]))) {   // Finding if this state (probability) needs to be swapped
             int j = i | (1 << this->targets[0]);    // Finding the swappable position for this state (probability)

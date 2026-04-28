@@ -4,12 +4,12 @@
 #include "Gate.h"
 #include "QubitRegister.h"
 
-class PauliX : public Gate {
+class PauliXGate : public Gate {
     private:
     //
 
     public:
-    PauliX (int index);
+    PauliXGate (int index);
 
     void apply (StateVector& state) override;
 };
