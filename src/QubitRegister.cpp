@@ -39,9 +39,11 @@ void QubitRegister::normalize(){
     for (int i = 0; i < (1 << numOfQubits); i++){
         sum += std::norm(state(i));
     }
+
     sum = std::sqrt(sum);
+
     for (int i = 0; i < (1 << numOfQubits); i++){
-        state(i) = state(i) / sum;
+        state(i) = (sum != 0.0) ? (state(i) / sum) : 0.0;
     }
 }
 
@@ -68,8 +70,8 @@ void QubitRegister::measure(int n) {
 
     double prob = probabilityOf(n, true);
 
-    double random = (rand() % 100) / 99.0;
-    int indent = (random > prob)? (1 << n) : 0;
+    double random = (rand() % 100) / 100.0;
+    int indent = (random < prob)? (1 << n) : 0;
 
     for (int i = 0; i < (1 << numOfQubits); i++) {
         if (((i - indent) >> n) & 1) {

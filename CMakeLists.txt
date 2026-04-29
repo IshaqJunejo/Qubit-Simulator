@@ -11,6 +11,7 @@ add_executable(Qubit_Simulator
     src/Circuit.cpp
     src/Gate.cpp
     src/PauliXGate.cpp
+    src/HadamardGate.cpp
     src/GateFactory.cpp
     src/QubitRegister.cpp
     src/main.cpp

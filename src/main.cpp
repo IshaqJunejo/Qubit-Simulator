@@ -3,6 +3,7 @@
 #include "QubitRegister.h"
 #include "Gate.h"
 #include "PauliXGate.h"
+#include "HadamardGate.h"
 #include "GateFactory.h"
 #include "Circuit.h"
 
@@ -13,6 +14,7 @@ int main () {
 
     QubitRegister QR(size);
     PauliXGate gate(1);
+    HadamardGate gate2(2, size);
 
     std::cout << "Initial State\n";
     std::cout << QR << "\n";
@@ -34,15 +36,28 @@ int main () {
 
     std::cout << "After applying the PauliXGate Gate on Qubit index 1\n";
 
-    probabilityOf1 = QR.probabilityOf(1, true);
-    probabilityOfNot1 = QR.probabilityOf(1, false);
+    double prob, prob2;
 
-    std::cout << "Probability of Qubit 1 being \'1\':\t" << probabilityOf1 << "\n";
-    std::cout << "Probability of Qubit 1 being \'0\':\t" << probabilityOfNot1 << "\n";
+    for (int i = 0; i < size; i++) {
+        prob = QR.probabilityOf(i, true);
+        prob2 = QR.probabilityOf(i, false);
 
-    std::cout << "Total:\t" << probabilityOf1 + probabilityOfNot1 << "\n\n";
+        std::cout << "Qubit index: " << i << "\nTrue: " << prob << "\nFalse: " << prob2 << "\n\n";
+    }
 
     std::cout << "Resultant State Vector\n" << QR << "\n";
+
+    std::cout << "After applying Hadamard Gate on Qubit index 2\n";
+    gate2.apply(QR.getState());
+
+    for (int i = 0; i < size; i++) {
+        prob = QR.probabilityOf(i, true);
+        prob2 = QR.probabilityOf(i, false);
+
+        std::cout << "Qubit index: " << i << "\nTrue: " << prob << "\nFalse: " << prob2 << "\n\n";
+    }
+
+    std::cout << "Resultant State Vector:\n" << QR << "\n";
 
     for (int i = 0; i < size; i++) {
         QR.measure(i);

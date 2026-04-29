@@ -2,6 +2,7 @@
 #define GATE_H
 
 #include <vector>
+#include <unsupported/Eigen/KroneckerProduct>
 #include "QubitRegister.h"
 
 class Gate {
