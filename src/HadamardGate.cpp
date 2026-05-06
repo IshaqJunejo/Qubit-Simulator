@@ -9,18 +9,17 @@ HadamardGate::HadamardGate (int index, int numQ) {
 }
 
 void HadamardGate::initKroneckerProduct (int numQ) {
-    int numOfQubits = numQ;
     Eigen::Matrix2cd H;
 
     std::complex<double> s = 1.0 / std::sqrt(2.0);
 
-    H << s , s, s, -s;
+    H << s , s , s , -s;
 
     Eigen::Matrix2cd I = Eigen::Matrix2cd::Identity();
 
     this->kronProd = (this->targets[0] == 0) ? H : I;
 
-    for (int i = 1; i < numOfQubits; i++) {
+    for (int i = 1; i < numQ; i++) {
         if (i == this->targets[0]) {
             this->kronProd = kroneckerProduct(H, this->kronProd).eval();
         } else {
@@ -29,6 +28,9 @@ void HadamardGate::initKroneckerProduct (int numQ) {
     }
 }
 
-void HadamardGate::apply (StateVector& state) {
-    state = this->kronProd * state;
+void HadamardGate::apply (QubitRegister& QR) {
+    StateVector state = QR.getState();
+    QR.getState() = this->kronProd * state;
+
+    QR.normalize();
 }

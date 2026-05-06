@@ -1,18 +1,18 @@
-#ifndef HADAMARDGATE_H
-#define HADAMARDGATE_H
+#ifndef CNOTGATE_H
+#define CNOTGATE_H
 
 #include <unsupported/Eigen/KroneckerProduct>
 #include "QubitRegister.h"
 #include "Gate.h"
 
-class HadamardGate : public Gate {
+class CNOTGate : public Gate {
     private:
     Eigen::MatrixXcd kronProd;
 
     void initKroneckerProduct (int numQ);
-    
+
     public:
-    HadamardGate (int index, int numQ);
+    CNOTGate (int control, int target, int numQ);
 
     void apply (QubitRegister& QR) override;
 };

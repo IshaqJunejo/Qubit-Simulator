@@ -12,7 +12,7 @@ class Gate {
     public:
     Gate ();
 
-    virtual void apply (StateVector& state) = 0;
+    virtual void apply (QubitRegister& QR) = 0;
 };
 
 #endif

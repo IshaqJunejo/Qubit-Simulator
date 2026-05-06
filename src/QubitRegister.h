@@ -11,7 +11,6 @@ class QubitRegister {
     private:
     int numOfQubits;
     StateVector state;
-    void normalize();
 
     public:
     QubitRegister();
@@ -19,6 +18,7 @@ class QubitRegister {
     void randomize();
     double probabilityOf(int n, bool target);
     void measure(int n);
+    void normalize();
     StateVector& getState ();
     friend std::ostream & operator<<(std::ostream & out, const QubitRegister & other);
 };
