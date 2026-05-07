@@ -13,16 +13,16 @@ The simulation must be at-least optimized enough to be able to simulate single-d
 * [x] `Complex`: a class to store complex number
 * [x] `QubitRegister`: Manages a Qubit-Register, and stores the state vector for that Qubit. 
 * [x] `Gate`: An abstract class for gates, it must have a pure virtual function for `apply()`.
-  * [ ] `HadmardGate`
-  * [ ] `CNOTGate`
+  * [x] `HadmardGate`
+  * [x] `CNOTGate`
   * [x] `PauliXGate` 
 * [ ] `GateFactory`: It stores and manages all objects of `Gate`
 * [ ] `Circuit`: a class to manage a `GateFactory` and (maybe multiple) `QubitRegister` objects. Needed to sequentially execute the `QubitRegister` on the list of `Gate`.
 
 ### Algorithms
 
-* [ ] **Superposition**: Apply `HadmardGate` to a zero-state. 
-* [ ] **Entanglement**: Apply `HadmardGate` to a qubit, then `CNOTGate` to observe its effects.
+* [x] **Superposition**: Apply `HadmardGate` to a zero-state. 
+* [x] **Entanglement**: Apply `HadmardGate` to a qubit, then `CNOTGate` to observe its effects.
 * [x] **Measurement**: Implement a function that collapses the state based on probabilities.
 
 ## How to use

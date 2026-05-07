@@ -11,7 +11,7 @@ class PauliXGate : public Gate {
     public:
     PauliXGate (int index);
 
-    void apply (StateVector& state) override;
+    void apply (QubitRegister& QR) override;
 };
 
 #endif
