@@ -46,9 +46,9 @@ void CNOTGate::initKroneckerProduct (int numQ) {
     this->kronProd = comp0 + comp1;
 }
 
-void CNOTGate::apply (QubitRegister& QR) {
-    StateVector state = QR.getState();
-    QR.getState() = this->kronProd * state;
+void CNOTGate::apply (QubitRegister*& QR) {
+    StateVector state = QR->getState();
+    QR->getState() = this->kronProd * state;
 
-    QR.normalize();
+    QR->normalize();
 }

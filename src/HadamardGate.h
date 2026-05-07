@@ -14,7 +14,7 @@ class HadamardGate : public Gate {
     public:
     HadamardGate (int index, int numQ);
 
-    void apply (QubitRegister& QR) override;
+    void apply (QubitRegister*& QR) override;
 };
 
 #endif
