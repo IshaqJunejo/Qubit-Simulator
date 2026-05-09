@@ -28,9 +28,9 @@ void HadamardGate::initKroneckerProduct (int numQ) {
     }
 }
 
-void HadamardGate::apply (QubitRegister& QR) {
-    StateVector state = QR.getState();
-    QR.getState() = this->kronProd * state;
+void HadamardGate::apply (QubitRegister*& QR) {
+    StateVector state = QR->getState();
+    QR->getState() = this->kronProd * state;
 
-    QR.normalize();
+    QR->normalize();
 }

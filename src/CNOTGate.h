@@ -14,7 +14,7 @@ class CNOTGate : public Gate {
     public:
     CNOTGate (int control, int target, int numQ);
 
-    void apply (QubitRegister& QR) override;
+    void apply (QubitRegister*& QR) override;
 };
 
 #endif

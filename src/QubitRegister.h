@@ -16,7 +16,7 @@ class QubitRegister {
     QubitRegister();
     QubitRegister(int size);
     void randomize();
-    double probabilityOf(int n, bool target);
+    double probabilityOf(int n, bool target) const;
     void measure(int n);
     void normalize();
     StateVector& getState ();

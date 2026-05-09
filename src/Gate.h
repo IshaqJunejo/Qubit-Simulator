@@ -12,7 +12,9 @@ class Gate {
     public:
     Gate ();
 
-    virtual void apply (QubitRegister& QR) = 0;
+    ~Gate () = default;
+
+    virtual void apply (QubitRegister*& QR) = 0;
 };
 
 #endif

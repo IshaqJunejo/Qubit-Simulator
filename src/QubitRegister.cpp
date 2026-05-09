@@ -1,4 +1,3 @@
-// #include <vector>
 #include <cmath>
 #include <Eigen/Dense>
 #include <cstdlib>
@@ -9,7 +8,6 @@
 typedef std::complex<double> Complex;
 typedef Eigen::VectorXcd StateVector;
 
-// Constructors
 QubitRegister::QubitRegister () : numOfQubits(1) {
     state = StateVector::Zero(2);
     state(0) = 1.0;
@@ -20,7 +18,6 @@ QubitRegister::QubitRegister (int size) : numOfQubits(size) {
     state(0) = 1.0;
 }
 
-// implementing the randomize() function
 void QubitRegister::randomize(){
     double random;
     for (int i = 0; i < (1 << numOfQubits); i++){
@@ -32,7 +29,6 @@ void QubitRegister::randomize(){
     normalize();
 }
 
-// Implementing the normalize function
 void QubitRegister::normalize(){
     double sum = 0;
 
@@ -48,7 +44,7 @@ void QubitRegister::normalize(){
 }
 
 
-double QubitRegister::probabilityOf(int n, bool target) {
+double QubitRegister::probabilityOf(int n, bool target) const {
     if (n < 0 || n >= numOfQubits)
         throw std::invalid_argument("Invalid qubit index");
 
@@ -87,10 +83,19 @@ StateVector& QubitRegister::getState() {
     return this->state;
 }
 
-// operator overloading
+// insertion operator overloading
 std::ostream& operator<<(std::ostream& out, const QubitRegister& other) {
     for (int i = 0; i < (1 << other.numOfQubits); i++){
-        out << std::norm(other.state(i)) << std::endl;
+        out << std::norm(other.state(i)) << "\n";
+    }
+
+    double prob, notProb;
+
+    for (int i = 0; i < other.numOfQubits; i++) {
+        prob = other.probabilityOf(i, true);
+        notProb = other.probabilityOf(i, false);
+
+        out << "Qubit index: " << i << "\tTrue: " << prob << "\tFalse: " << notProb << "\n";
     }
 
     return out;

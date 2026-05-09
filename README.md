@@ -10,7 +10,6 @@ The simulation must be at-least optimized enough to be able to simulate single-d
 
 ### Classes / Structure
 
-* [x] `Complex`: a class to store complex number
 * [x] `QubitRegister`: Manages a Qubit-Register, and stores the state vector for that Qubit. 
 * [x] `Gate`: An abstract class for gates, it must have a pure virtual function for `apply()`.
   * [x] `HadmardGate`
