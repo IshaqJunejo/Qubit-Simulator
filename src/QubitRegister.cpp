@@ -83,6 +83,8 @@ StateVector& QubitRegister::getState() {
     return this->state;
 }
 
+int QubitRegister::getNumOfQubits () const { return this->numOfQubits; }
+
 // insertion operator overloading
 std::ostream& operator<<(std::ostream& out, const QubitRegister& other) {
     for (int i = 0; i < (1 << other.numOfQubits); i++){

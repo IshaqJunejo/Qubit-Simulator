@@ -12,6 +12,7 @@
 class GateFactory {
     private:
     std::vector<Gate*> gate_operations;
+    std::vector<std::string> gates_info;
     int numOfQubits;
     int numOfGates;
 
@@ -24,9 +25,11 @@ class GateFactory {
 
     void execute (QubitRegister*& QR, int gate_index) const;
 
-    int getNumOfGates ();
+    int getNumOfGates () const;
 
-    friend std::ostream& operator<< (std::ostream& out, const GateFactory& other);
+    std::vector<std::string> getGatesInfo () const;
+
+    // friend std::ostream& operator<< (std::ostream& out, const GateFactory& other);
 };
 
 #endif

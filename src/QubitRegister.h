@@ -20,6 +20,7 @@ class QubitRegister {
     void measure(int n);
     void normalize();
     StateVector& getState ();
+    int getNumOfQubits () const;
     friend std::ostream & operator<<(std::ostream & out, const QubitRegister & other);
 };
 
