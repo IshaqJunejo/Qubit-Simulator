@@ -13,6 +13,8 @@ class Circuit {
     GateFactory* factory;
     QubitRegister* QRegister;
     int numOfQubits;
+    bool isExecuted;
+    bool isMeasured;
 
     public:
     Circuit (int numQ);
@@ -25,8 +27,16 @@ class Circuit {
     void execute ();
 
     void measure ();
+
+    void randomize ();
     
-    void display ();
+    void display () const;
+
+    void displayQubitProb (int i) const;
+
+    std::vector<std::string> getGatesInfo () const;
+
+    const StateVector& getStateVector () const;
 };
 
 #endif

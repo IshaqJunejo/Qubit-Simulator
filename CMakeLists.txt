@@ -18,6 +18,9 @@ add_executable(Qubit_Simulator
     src/main.cpp
 )
 
-target_link_libraries(Qubit_Simulator PRIVATE Eigen3::Eigen)
+target_link_libraries(Qubit_Simulator 
+    PRIVATE 
+    Eigen3::Eigen
+)
 
 target_include_directories(Qubit_Simulator PRIVATE src)

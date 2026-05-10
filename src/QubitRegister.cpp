@@ -3,7 +3,11 @@
 #include <cstdlib>
 #include <ctime>
 #include <stdexcept>
+#include <bitset>
 #include "QubitRegister.h"
+
+#define YEL  "\033[33m"
+#define RSET "\033[0m"
 
 typedef std::complex<double> Complex;
 typedef Eigen::VectorXcd StateVector;
@@ -78,15 +82,16 @@ void QubitRegister::measure(int n) {
     normalize();
 }
 
-// Get a reference to the State Vector
 StateVector& QubitRegister::getState() {
     return this->state;
 }
 
-// insertion operator overloading
+int QubitRegister::getNumOfQubits () const { return this->numOfQubits; }
+
 std::ostream& operator<<(std::ostream& out, const QubitRegister& other) {
     for (int i = 0; i < (1 << other.numOfQubits); i++){
-        out << std::norm(other.state(i)) << "\n";
+        std::string binary = std::bitset<5>(i).to_string().substr(5 - other.numOfQubits);
+        out << YEL << " |" << binary << ">" << RSET << " Prob: " << std::norm(other.state(i)) << "\n";
     }
 
     double prob, notProb;

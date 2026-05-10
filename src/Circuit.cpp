@@ -31,12 +31,12 @@ void Circuit::addGate (char type, int control, int target) {
 }
 
 void Circuit::execute () {
-    std::cout << "State Vector before execution:\n" << *QRegister << "\n";
+    std::cout << "\nState Vector before execution:\n" << *QRegister << "\n";
 
     for (int i = 0; i < this->factory->getNumOfGates(); i++) {
         this->factory->execute(QRegister, i);
 
-        std::cout << "State Vector after execution step " << i + 1 << ":\n" << *QRegister << "\n";
+        // std::cout << "State Vector after execution step " << i + 1 << ":\n" << *QRegister << "\n";
     }
 }
 
@@ -46,6 +46,22 @@ void Circuit::measure () {
     }
 }
 
-void Circuit::display () {
+void Circuit::randomize () {
+    this->QRegister->randomize();
+}
+
+void Circuit::display () const {
     std::cout << *QRegister << "\n";
+}
+
+void Circuit::displayQubitProb (int i) const {
+    std::cout << "Qubit index " << i << "\tTrue: " << this->QRegister->probabilityOf(i, true) << "\tFalse: " << this->QRegister->probabilityOf(i, false) << "\n";
+}
+
+std::vector<std::string> Circuit::getGatesInfo () const {
+    return this->factory->getGatesInfo();
+}
+
+const StateVector& Circuit::getStateVector () const {
+    return this->QRegister->getState();
 }

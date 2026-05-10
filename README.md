@@ -1,9 +1,9 @@
 # Qubit-Simulator
 
 ## Plan
-The plan is to build an **MVP** (Minimal Viable Product) of a Quantum Computer Simulation.
-This simulation needs to be able to simulate and execute a handful of Qubits on a selection of Quantum Gates.
-The simulation must be at-least optimized enough to be able to simulate single-digit number of Qubits on consumer-grade Laptops.
+We have designed an **MVP** (Minimal Viable Product) for a Quantum Computer Simulation.
+This project simulate a multi-qubit system of 5 Qubits on consumer-grade Laptops.
+However, this number can extended considering the limitation of memory.
 
 
 ## Progress
@@ -15,8 +15,8 @@ The simulation must be at-least optimized enough to be able to simulate single-d
   * [x] `HadmardGate`
   * [x] `CNOTGate`
   * [x] `PauliXGate` 
-* [ ] `GateFactory`: It stores and manages all objects of `Gate`
-* [ ] `Circuit`: a class to manage a `GateFactory` and (maybe multiple) `QubitRegister` objects. Needed to sequentially execute the `QubitRegister` on the list of `Gate`.
+* [X] `GateFactory`: It stores and manages all objects of `Gate`
+* [X] `Circuit`: a class to manage a `GateFactory` and (maybe multiple) `QubitRegister` objects. Needed to sequentially execute the `QubitRegister` on the list of `Gate`.
 
 ### Algorithms
 
